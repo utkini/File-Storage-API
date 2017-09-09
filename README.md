@@ -5,6 +5,9 @@
   * [Description.](#description)
   * [Getting started.](#getting-started)
   * [Class Register.](#class-register)
+      * [Register Methods.](#register-methods)
+          * [Add user](#add-user)
+          * [Get User id](#get-user-id)
   * [Class LogIn.](#class-login)
   * [Class UsersData.](#class-usersdata)
   
@@ -41,7 +44,7 @@ Register Class is responsible for adding the user to the database and obtaining
 the necessary information about the user at the time of registration, for further 
 work. In this class 4 auxiliary methods and 2 basic methods.
 
-### Methods.
+### Register Methods.
 The two main methods are `add_user` and `get_user_id`.
 
 #### Add user
