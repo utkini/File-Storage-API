@@ -48,7 +48,7 @@ work. In this class 4 auxiliary methods and 2 basic methods.
 ### Methods.
 The two main methods are `add_user` and `get_user_id`.
 
-##### Add user
+#### Add user
 The `add user` method adds a new user to the database, assigning it a unique user ID. 
 If a user with this name and email exists, then this method will display an error message.
 
@@ -61,7 +61,7 @@ Use this method to add new user. On success, the ok is returned.
 | password | crypt String | Yes |  crypt password |
 | tracking | String | Yes | path user |
 
-##### Get user id
+#### Get user id
 The `get user id` method gives a unique user number stored in the database.
 Use this method to obtain a unique user number. If such a user does not exist, the method will report this: This user does not exist.
 
@@ -77,7 +77,7 @@ The class contains 6 basic methods for dabot with the user.
 
 
 ### Methods.
-##### Login user
+#### Login user
 Use this method to verify the user in the database.
 
 The method produces two messages:
@@ -88,7 +88,7 @@ The method produces two messages:
 | --- | --- | --- | --- |
 | username | Integer or String | Yes | Unique username |
 
-##### Get pwd
+#### Get pwd
 Use this method to retrieve a user password.
 
 The method gives the user's password if such a user exists, otherwise, the error message is printed - 'bad'
@@ -97,7 +97,7 @@ The method gives the user's password if such a user exists, otherwise, the error
 | --- | --- | --- | --- |
 | username | Integer or String | Yes | Unique username |
 
-##### Change password
+#### Change password
 Use this method to change the user's password in the database.
 
 The method changes the password for this user. If this user does not exist, the method will display an error message.
@@ -105,8 +105,29 @@ The method changes the password for this user. If this user does not exist, the 
 | Parameters | Type | Required | Description |
 | --- | --- | --- | --- |
 | username | Integer or String | Yes | Unique username |
-| user_id | Integer | Yes | Unique user_id |
+| user_id | Integer | Yes | Unique user id |
 | password | crypt String | Yes | New password user |
+
+#### Del user
+Use this method to remove a user from the database.
+
+The method deletes the user from the database. If this user does not exist, the error message will not be displayed. The program will work as usual.
+
+| Parameters | Type | Required | Description |
+| --- | --- | --- | --- |
+| username | Integer or String | Yes | Unique username |
+| user_id | Integer | Yes | Unique user id |
+
+#### Change Email
+Use this method to change email address from the database.
+
+The method modifies the user's email address in the database. The method requires that in the email there are such symbols as '@' and '.'
+
+| Parameters | Type | Required | Description |
+| --- | --- | --- | --- |
+| username | Integer or String | Yes | Unique username |
+| user_id | Integer | Yes | Unique user id |
+| new_email | String | Yes | New user email |
 
 
 ## Class UsersData.
