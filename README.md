@@ -160,11 +160,20 @@ At the moment, you can save almost all files such as TEXT (`txt`, `doc`, `docx`,
 
 Example:
         
-            words.txt
-            words(1).txt
-            words(2).txt
+    words.txt
+    words(1).txt
+    words(2).txt
             
 On the server, the file is saved in folders created using the md5 algorithm.
+
+The method returns a dictionary of the form 
+```
+{
+    filename: filename, 
+    file_dir: file dir in system
+}
+```
+Where *filename* is the file name in the database, and *file dir in system* is the directory where the file is located for further download.
 
 | Parameters | Type | Required | Description |
 | --- | --- | --- | --- |
@@ -172,3 +181,166 @@ On the server, the file is saved in folders created using the md5 algorithm.
 | user_id | Integer | Yes | Unique user id |
 | filename | String | Yes | User file name |
 | user_dir | String | Optional | If None - > saves the file to the root folder of the user |
+
+ #### Reaname file
+ 
+ Use this method to change the filename.
+ 
+This method implements the renaming of the file in the database and in the system along the way from the database.
+
+This method for successful execution returns `None`, otherwise the error message.    
+
+ 
+| Parameters | Type | Required | Description |
+| --- | --- | --- | --- |
+| username | Integer or String | Yes | Unique username |
+| user_id | Integer | Yes | Unique user id |
+| user_dir | String | Yes | User directory in which he will save the file |
+| old_filename | String | Yes | The name of the old file |
+| new_filename | String | Yes | New filename |
+
+**Important.** In the method, the filename is supplied with an extension and, if the extensions do not coincide the file to be modified, and the proposed file, the method will return an error message: 
+
+"You can not change the extension file * to an extension *"
+
+#### Del file
+Use this method to delete a file from the database and the system.
+ 
+Delete a file from the database and the system. The path to the file is stored in the database.
+
+On successful execution, the method returns None, if the method did not find the file in this directory, an error message will be displayed.
+
+"There is no such file in this directory"
+
+| Parameters | Type | Required | Description |
+| --- | --- | --- | --- |
+| username | Integer or String | Yes | Unique username |
+| user_id | Integer | Yes | Unique user id |
+| filename | String | Yes | Filename |
+| user_dir | String | Yes | User directory in which he will save the file |
+
+#### Find files in dirs
+Search all files in this directory.
+
+Search for a file by directory, checking whether it's the user with using two identifiers username and user_id displays a file and its location, for downloading.
+
+The method returns a dictionary of the form
+```
+{ 
+    filename: filename, 
+    file_path : file path in system 
+}
+```
+Where *filename* is the file name in the database, and *file dir in system* is the directory where the file is located for further download.
+
+| Parameters | Type | Required | Description |
+| --- | --- | --- | --- |
+| username | Integer or String | Yes | Unique username |
+| user_id | Integer | Yes | Unique user id |
+| user_dir | String | Yes | The user directory in which he wants to see the files |
+
+#### Create folder
+This method is used to create a new folder for the user.
+
+Creates a folder for the user in which you can store data. This method is also creates dependencies between the rest of the folders, creating a "tree".
+
+If it works correctly, the method returns None, if such a folder already exists in this directory, then the method returns an error message:
+
+"This folder exist exist"
+
+| Parameters | Type | Required | Description |
+| --- | --- | --- | --- |
+| username | Integer or String | Yes | Unique username |
+| user_id | Integer | Yes | Unique user id |
+| new_folred | String | Yes | Name new folder |
+
+#### Get folder
+Use this method to get all the folders in this directory.
+
+Getting all folders with directories that are relative to the directory in which the user is located. You need to enter the full directory of the user's location and then the method will produce the following. Possible files with directories for the dictionary to go deep.
+
+The method returns a dictionary of the form
+```
+{
+    name folder: folder path
+}
+```
+Where *name folder* is the name of the folder in this directory, and *folder path* is the path to this folder for the user.
+
+| Parameters | Type | Required | Description |
+| --- | --- | --- | --- |
+| username | Integer or String | Yes | Unique username |
+| user_id | Integer | Yes | Unique user id |
+| user_dir | String | Yes | Directory in which the user wants to receive folders |
+
+#### Get dir
+Use this method to retrieve all the parent directories.
+
+This method implements the submission of directories to the user in the format of the ordered dict The input is given the username of its unique number and the path to which it wants to get. The method checks whether there is such a path in the database and all parents with references to them, for further transfer to the user.
+
+The method returns an OrderedDict of the form
+```
+{
+    name directory: the path of this directory
+}
+```
+Where *the path of this directory* is the path to each user's parent directory.
+
+If the specified directory does not exist, the user receives an error message:
+
+"There is no such directory"
+
+| Parameters | Type | Required | Description |
+| --- | --- | --- | --- |
+| username | Integer or String | Yes | Unique username |
+| user_id | Integer | Yes | Unique user id |
+| pathway | String | Yes | The way to which the user wants to come |
+
+#### Change dir name
+Use this method to change the directory name.
+
+You can change all directories except the parent "username". The new directory name replaces the old one in the database everywhere and gives `None` if all the actions are successful. 
+
+To change the name you need all the directories in which there is this directory and their replacement the name of the new user created by the user.
+
+If the directory does not exist, the method will return an error message:
+
+"Directory with this name does not exist"
+
+If the user tries to change the feed folder, then he will receive an error message:
+
+"This directory can not be modified"
+
+| Parameters | Type | Required | Description |
+| --- | --- | --- | --- |
+| username | Integer or String | Yes | Unique username |
+| user_id | Integer | Yes | Unique user id |
+| old_user_dir | String | Yes | The name of the directory you want to change |
+| new_user_dir | String | Yes | New name directory |
+
+#### Delete dir
+Use this method to delete a directory.
+
+Deleting a directory from the main cell and, if there are files lying in this directory, then deleting them from the database and the system. 
+
+The method returns None, if the selected folder does not exist, the method returns an error message.
+
+"This folder does not exist"
+
+| Parameters | Type | Required | Description |
+| --- | --- | --- | --- |
+| username | Integer or String | Yes | Unique username |
+| user_id | Integer | Yes | Unique user id |
+| name_dir | String | Yes | The name of the directory you want to delete |
+
+#### Delete user
+The name of the directory you want to delete.
+
+The name of the directory you want to delete.
+
+The method returns the value None, if the selected user does not exist, then returns an error message.
+
+| Parameters | Type | Required | Description |
+| --- | --- | --- | --- |
+| username | Integer or String | Yes | Unique username |
+| user_id | Integer | Yes | Unique user id |
