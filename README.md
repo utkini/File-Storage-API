@@ -137,3 +137,38 @@ Creates the necessary folders for storing files and updating them. All user file
 are stored in the directory that is in the directory variable, in the `usersdata.py` file. 
 All folders for storing files are created in this directory. 
 To change the directory for saving files, you need to change this variable in the `usersdata.py` file.
+
+### Methods.
+The main methods of this class are `create_dir_for_user`, `add_file`, `rename_file`, `del_file`, `find_files_in_dirs`, `create_folder`, `get_folder`, `get_dir`, `change_dir_name`, `delete_dir`, `delete_user`
+
+#### Craete dir for user
+Use this method to create a user by creating the user's root folder and adding the user to the database.
+
+The method adds a user to the database and creates a user's root folder in the system, preparing for the user's further work with it. If successful, the motor returns `None`, otherwise it writes an exception to the console.
+
+| Parameters | Type | Required | Description |
+| --- | --- | --- | --- |
+| username | Integer or String | Yes | Unique username |
+| user_id | Integer | Yes | Unique user id |
+
+#### Add file
+Adding a file to the database and creating a directory to write it to the server.
+
+This method implements adding a file to the database and creating directories on the server and directories for the user to store this file. Before adding the file to the database and saving it to the server, the method checks the file extension.
+
+At the moment, you can save almost all files such as TEXT (`txt`, `doc`, `docx`, `docm`, `dotm`, `dotx`, `pdf`, `xls`, `xlsx`, `xlsm`, `xltx`, `xlt`, `xltm`, `pptx`, `ppt`, `ppsx`, `pps`, `potx`, `pot`, `ppa`, `ppam`), PICTURE (`jpg`, `jpeg`, `tif`, `tiff`, `png`, `gif`, `bmp`), SONG (`wav`, `mp3`, `wma`, `ogg`, `aac`, `flac`) and VIDEO (`avi`, `mkv`, `mp4`, `mpeg`). If a file exists for a given user path, the method overwrites the file by changing its name.
+
+Example:
+        
+            words.txt
+            words(1).txt
+            words(2).txt
+            
+On the server, the file is saved in folders created using the md5 algorithm.
+
+| Parameters | Type | Required | Description |
+| --- | --- | --- | --- |
+| username | Integer or String | Yes | Unique username |
+| user_id | Integer | Yes | Unique user id |
+| filename | String | Yes | User file name |
+| user_dir | String | Optional | If None - > saves the file to the root folder of the user |
