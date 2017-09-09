@@ -1,10 +1,6 @@
-# <p align="center">File storage
- 
-<p align="center">A simple, but extensible Python 
-implementation for the File storage.
+# <p align="center">File storage API
 
-<p align="center">This project shows how you can use this API on the
-example of File storage.
+<p align="center">This project shows File storage API.
 
   * [Description.](#description)
   * [Getting started.](#getting-started)
