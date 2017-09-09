@@ -9,7 +9,25 @@
           * [Add user](#add-user)
           * [Get User id](#get-user-id)
   * [Class LogIn.](#class-login)
+      * [LogIn Methods.](#login-methods)
+          * [Login user](#login-user)
+          * [Get pwd](#get-pwd)
+          * [Change password](#change-password)
+          * [Del user](#del-user)
+          * [Change Email](#change-email)
   * [Class UsersData.](#class-usersdata)
+      * [UsersData Methods.](#usersData-methods)
+          * [Create dir for user](#create-dir-for-user)
+          * [Add file](#add-file)
+          * [Reaname file](#reaname-file)
+          * [Del file](#del-file)
+          * [Find files in dirs](#find-files-in-dirs)
+          * [Create folder](#create-folder)
+          * [Get folder](#get-folder)
+          * [Get dir](#get-dir)
+          * [Change dir name](#change-dir-name)
+          * [Delete dir](#delete-dir)
+          * [Delete user](#delete-user)
   
 ## Description.
 
@@ -75,7 +93,7 @@ Login class is needed to identify the user on the system and update his data.
 The class contains 6 basic methods for dabot with the user.
 
 
-### Methods.
+### LogIn Methods.
 #### Login user
 Use this method to verify the user in the database.
 
@@ -137,10 +155,10 @@ are stored in the directory that is in the directory variable, in the `usersdata
 All folders for storing files are created in this directory. 
 To change the directory for saving files, you need to change this variable in the `usersdata.py` file.
 
-### Methods.
+### UsersData Methods.
 The main methods of this class are `create_dir_for_user`, `add_file`, `rename_file`, `del_file`, `find_files_in_dirs`, `create_folder`, `get_folder`, `get_dir`, `change_dir_name`, `delete_dir`, `delete_user`
 
-#### Craete dir for user
+#### Create dir for user
 Use this method to create a user by creating the user's root folder and adding the user to the database.
 
 The method adds a user to the database and creates a user's root folder in the system, preparing for the user's further work with it. If successful, the motor returns `None`, otherwise it writes an exception to the console.
