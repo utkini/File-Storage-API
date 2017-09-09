@@ -48,25 +48,61 @@ work. In this class 4 auxiliary methods and 2 basic methods.
 ### Methods.
 The two main methods are `add_user` and `get_user_id`.
 
-##### Add user.
-The `add user` method adds a new user to the database, assigning it a unique number. 
-If a user with this name and email exists, then this method will display an error message, 
-otherwise it will display the accept message - 'ok'
-
+##### Add user
+The `add user` method adds a new user to the database, assigning it a unique user ID. 
+If a user with this name and email exists, then this method will display an error message.
+Use this method to add new user. On success, the ok is returned.
 | Parameters | Type | Required | Description |
 | --- | --- | --- | --- |
 | username | Integer or String | Yes | Unique username |
 | email | String | Yes | Unique email |
-| password | crypt.md5 | Yes | md5.password |
+| password | crypt String | Yes |  crypt password |
+| tracking | String | Yes | path user |
 
+##### Get user id
+The `get user id` method gives a unique user number stored in the database.
+Use this method to obtain a unique user number. If such a user does not exist, the method will report this: This user does not exist.
 
-##### Get user id.
+| Parameters | Type | Required | Description |
+| --- | --- | --- | --- |
+| username | Integer or String | Yes | Unique username |
 
 
 ## Class LogIn.
 
 Login class is needed to identify the user on the system and update his data. 
 The class contains 6 basic methods for dabot with the user.
+
+
+### Methods.
+##### login user
+Use this method to verify the user in the database.
+The method produces two messages:
+- ok - if this user exists in the database
+- bad - if this user does not exist in the database
+
+| Parameters | Type | Required | Description |
+| --- | --- | --- | --- |
+| username | Integer or String | Yes | Unique username |
+
+##### Get pwd
+Use this method to retrieve a user password.
+The method gives the user's password if such a user exists, otherwise, the error message is printed - 'bad'
+
+| Parameters | Type | Required | Description |
+| --- | --- | --- | --- |
+| username | Integer or String | Yes | Unique username |
+
+##### Change password
+Use this method to change the user's password in the database.
+The method changes the password for this user. If this user does not exist, the method will display an error message.
+
+| Parameters | Type | Required | Description |
+| --- | --- | --- | --- |
+| username | Integer or String | Yes | Unique username |
+| user_id | Integer | Yes | Unique user_id |
+| password | crypt String | Yes | New password user |
+
 
 ## Class UsersData.
 
