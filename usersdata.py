@@ -566,21 +566,6 @@ def main():
     if f:
         b.del_all()
     b.get_all()
-    # b.create_dir_for_user('admin', 1)
-    # b.create_dir_for_user('ihgorek', 2)
-    # else:
-    #    b.add_file('admin', 1, 'words.txt', 'admin')
-    #   b.create_folder('admin', 1, 'admin/tor')
-    #  b.add_file('admin', 1, 'users.pdf', 'admin/tor')
-    # b.get_all()
-    # print b.delete_dir('admin',1,'admin/me')
-    # b.del_file('admin',1,'words.txt','admin/ade')
-    # print b.get_dir('admin',1,'admin/admi')
-    # b.rename_file('ihgorek',2,'ihgorek','words.txt','file.txt')
-    # b.delete_user('ihgorek',2)
-    # b.create_folder('admin',1,'ma')
-    # b.create_folder('admin',1,'mat')
-    # b.delete_dir('admin',1,'/admin/ma')
 
 
 if __name__ == "__main__":
