@@ -1,7 +1,7 @@
 # <p align="center">File storage API
 
 <p align="center">This project shows File storage API.
-<p align="center">![Python 2.7](https://www.python.org/download/releases/2.7/)
+<p align="center">[Python 2.7](https://www.python.org/download/releases/2.7/)
 
   * [Description.](#description)
   * [Getting started.](#getting-started)
