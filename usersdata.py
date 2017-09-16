@@ -69,7 +69,7 @@ class UsersData(object):
             print str(e)
 
     def add_file(self, username, user_id, filename, user_dir=''):
-        """Adding a file to the database and creating a directory to write it to the server
+        """Adding a file to the database and creating a directory to write it to the server.
 
         This method implements adding a file to the database and creating directories on the server
         and directories for the user to store this file.
@@ -121,10 +121,10 @@ class UsersData(object):
         sys_dir = new_dir
         tmp = new_filename.rpartition('.')
         format_file = tmp[-1]
-        if format_file in self.TEXT or \
-                        format_file in self.PIC or \
-                        format_file in self.SONG or \
-                        format_file in self.VIDEO:
+        if format_file.lower() in self.TEXT or \
+                        format_file.lower() in self.PIC or \
+                        format_file.lower() in self.SONG or \
+                        format_file.lower() in self.VIDEO:
             fil = {'filename': new_filename,
                    'user_dir': new_user_dir,
                    'sys_dir': sys_dir}
@@ -202,7 +202,7 @@ class UsersData(object):
                 ans = 'You can not change the extension file' + old_extension + 'to an extension' + new_extension
                 return ans
         except Exception:
-            return 'Such file does not exist'
+            return "Such file doesn't exist"
 
     def del_file(self, username, user_id, filename, user_dir):
         """Use this method to delete a file from the database and the system
@@ -316,12 +316,12 @@ class UsersData(object):
         """Use this method to get all the folders in this directory
 
         Getting all folders with directories that are relative to the directory in which the user is located.
-        you need to enter the full directory of the user's location and then the method will produce the following
+        You need to enter the full directory of the user's location and then the method will produce the following.
         Possible files with directories for the dictionary to go deep
         :param username: Integer or String : Unique username
         :param user_id: Integer : Unique  user ID
         :param user_dir: String :
-        :return: dict {name folder: name folder, folder path: folder path }
+        :return: dict {name folder: folder path }
         """
         tmp = self.coll_d.find_one({'user_data.username': username,
                                     'user_data.user_id': user_id,
@@ -454,7 +454,7 @@ class UsersData(object):
                                    }
                                })
         if count == 0 and len(tmp) == 1:
-            return 'Directory with this name does not exist'
+            return "Directory with this name doesn't exist"
 
     def delete_dir(self, username, user_id, name_dir):
         """Use this method to delete a directory
@@ -476,8 +476,13 @@ class UsersData(object):
         if name_dir == '':
             return 'This field must be filled'
         new_ways = []
+        neww_way = []
+        new_pathway = name_dir + '/'
         ways = tmp['pathways']
         for way in ways:
+            if new_pathway not in way:
+                neww_way.append(way)
+        for way in neww_way:
             if name_dir != way:
                 new_ways.append(way)
         if len(ways) == len(new_ways):
@@ -561,11 +566,24 @@ class UsersData(object):
 
 def main():
     b = UsersData()
-
     f = False
     if f:
         b.del_all()
     b.get_all()
+    # b.create_dir_for_user('admin', 1)
+    # b.create_dir_for_user('ihgorek', 2)
+    # else:
+    #    b.add_file('admin', 1, 'words.txt', 'admin')
+    #   b.create_folder('admin', 1, 'admin/tor')
+    #  b.add_file('admin', 1, 'users.pdf', 'admin/tor')
+    # b.get_all()
+    # print b.delete_dir('admin',1,'admin/me')
+    # b.del_file('admin',1,'words.txt','admin/ade')
+    # print b.get_dir('admin',1,'admin/admi')
+    # b.rename_file('ihgorek',2,'ihgorek','words.txt','file.txt')
+    # b.delete_user('ihgorek',2)
+    # b.create_folder('admin',1,'mat')
+    # b.delete_dir('admin',1,'/admin/ma')
 
 
 if __name__ == "__main__":
